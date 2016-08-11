@@ -17,11 +17,11 @@ pinList = [26, 19, 13, 6, 5, 11, 9, 10]
 pinListLen = len(pinList)
 
 def setLow(idx):
-    print "[", pinList.index(idx), "] -- LOW"
+#    print "[", pinList.index(idx), "] -- LOW"
     GPIO.output(idx, GPIO.LOW)
 
 def setHigh(idx):
-    print "[", pinList.index(idx), "] -- HIGH"
+#    print "[", pinList.index(idx), "] -- HIGH"
     GPIO.output(idx, GPIO.HIGH)
 
 for i in pinList:

@@ -17,11 +17,11 @@ pinList = [26, 19, 13, 6, 5, 11, 9, 10]
 pinListLen = len(pinList)
 
 def setLow(idx):
-    print "[", pinList.index(idx), "] -- LOW"
+#    print "[", pinList.index(idx), "] -- LOW"
     GPIO.output(idx, GPIO.LOW)
 
 def setHigh(idx):
-    print "[", pinList.index(idx), "] -- HIGH"
+#    print "[", pinList.index(idx), "] -- HIGH"
     GPIO.output(idx, GPIO.HIGH)
 
 for i in pinList:
@@ -31,7 +31,7 @@ for i in pinList:
 time.sleep(TIME_SLICE*ONE_MSEC)
 
 try:
-    maxCount = 2*pinListLen
+    maxCount = pinListLen
     currCount = 0
 
     while(currCount<maxCount):
@@ -44,6 +44,19 @@ try:
 
         for i in range(pinListLen-1, -1, -1):
             setHigh(pinList[(i+currCount-1)%pinListLen])
+            time.sleep(TIME_SLICE*ONE_MSEC)
+
+    currCount = maxCount<<1
+
+    while(currCount>=maxCount):
+
+        currCount = currCount - 1
+        for i in range(pinListLen):
+            setLow(pinList[(-i+currCount)%pinListLen])
+            time.sleep(TIME_SLICE*ONE_MSEC)
+
+        for i in range(pinListLen-1, -1, -1):
+            setHigh(pinList[(-i+currCount)%pinListLen])
             time.sleep(TIME_SLICE*ONE_MSEC)
 
 except KeyboardInterrupt:
