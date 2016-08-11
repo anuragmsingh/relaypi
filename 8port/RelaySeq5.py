@@ -1,4 +1,4 @@
-##This program displays a binary equivalent of seq 1..max
+##Spreading sequence
 
 import math
 import sys
